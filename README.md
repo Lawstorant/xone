@@ -145,7 +145,7 @@ passwd deck
 ```
 Run installation script
 ```bash
-sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/dlundqvist/xone/master/install/steam-deck-install.sh)"
+sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/dlundqvist/Lawstorant/script2/install/steam-deck-install.sh)"
 ```
 #### Uninstall:
 ```bash
