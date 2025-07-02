@@ -150,9 +150,9 @@ Run installation script
 sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/Lawstorant/xone/script-test/install/steam-deck-install.sh)"
 ```
 #### Automatic uninstall:
+Run installation script wtih `remove` argument
 ```bash
-# run installation script wtih `remove` argument
-sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/Lawstorant/xone/script-test/install/steam-deck-uninstall.sh)" remove
+sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/Lawstorant/xone/script-test/install/steam-deck-install.sh)" remove
 ```
 Optionally, lock your deck and  remove password
 ```bash
