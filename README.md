@@ -147,12 +147,12 @@ passwd deck
 Run installation script
 
 ```bash
-sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/dlundqvist/xone/master/install/steam-deck-install.sh)"
+sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/Lawstorant/xone/script-test/install/steam-deck-install.sh)"
 ```
 #### Automatic uninstall:
 ```bash
 # run installation script wtih `remove` argument
-sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/dlundqvist/xone/master/install/steam-deck-uninstall.sh)" remove
+sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/Lawstorant/xone/script-test/install/steam-deck-uninstall.sh)" remove
 ```
 Optionally, lock your deck and  remove password
 ```bash
