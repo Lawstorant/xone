@@ -150,7 +150,7 @@ sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/dlundqvist/xone/maste
 #### Uninstall:
 ```bash
 # run installation script wtih `remove` argument
-sudo pacman -Rcns xone-dkms xone-dongle-firmware
+sudo pacman -Rcns xone-dkms
 ```
 Optionally, lock your deck and  remove password
 ```bash

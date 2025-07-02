@@ -42,16 +42,13 @@ linux=$(pacman -Qsq linux-neptune | grep -e "[0-9]$" | tail -n 1)
 pacman -Syu --noconfirm base-devel fakeroot glibc git \
     "$linux" "$linux-headers" linux-api-headers
 
-echo ""
-echo "You'll be asked for password again :("
-echo ""
-sleep 2s
+pacman -Syu --asdeps dkms w3m html-xml-utils
 
-cat <<- EOF > build.sh
-#! /usr/bin/sh
-makepkg -scri --noconfirm -p PKGBUILD_XONE
-makepkg -scri --noconfirm -p PKGBUILD_FIRMWARE
-EOF
+sudo -u deck makepkg -Cc -p PKGBUILD_XONE
+sudo -u deck makepkg -Cc -p PKGBUILD_FIRMWARE
+
+pacman -U xone-dkms-*.tar.zst
+pacman -U --asdeps xone-dongle-firmware-*.tar.zst
 
 chmod 755 build.sh
 sudo -u deck ./build.sh
