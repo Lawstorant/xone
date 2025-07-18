@@ -224,8 +224,10 @@ static void gip_gamepad_query_paddles(struct gip_gamepad *gamepad)
 		return;
 	}
 
-	if (hardware.product != GIP_PRODUCT_ELITE_SERIES_2)
+	if (hardware.product != GIP_PRODUCT_ELITE_SERIES_2) {
+		pr_debug("%s: MS controller, no paddle support", __func__);
 		return;
+	}
 
 	pr_debug("%s: Elite Series 2\n", __func__);
 	if (hardware.version <= GIP_ELITE_SERIES_2_4X_FIRMWARE)
@@ -255,6 +257,7 @@ static int gip_gamepad_init_input(struct gip_gamepad *gamepad)
 		input_set_capability(dev, EV_KEY, KEY_RECORD);
 
 	if (gamepad->paddle_support) {
+		pr_debug("%s: Paddle support detected", __func__);
 		input_set_capability(dev, EV_KEY, BTN_TRIGGER_HAPPY5);
 		input_set_capability(dev, EV_KEY, BTN_TRIGGER_HAPPY6);
 		input_set_capability(dev, EV_KEY, BTN_TRIGGER_HAPPY7);
