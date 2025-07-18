@@ -514,10 +514,6 @@ static int gip_gamepad_probe(struct gip_client *client)
 	if (err)
 		return err;
 
-	err = gip_gamepad_init_input(gamepad);
-	if (err)
-		return err;
-
 	dev_set_drvdata(&client->dev, gamepad);
 
 	return 0;
