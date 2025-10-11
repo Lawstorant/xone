@@ -104,28 +104,12 @@ static int gip_headset_pcm_close(struct snd_pcm_substream *sub)
 static int gip_headset_pcm_hw_params(struct snd_pcm_substream *sub,
 				     struct snd_pcm_hw_params *params)
 {
-	struct snd_pcm_runtime *runtime = sub->runtime;
-	size_t size = params_buffer_bytes(params);
-
-	if (runtime->dma_area) {
-		if (runtime->dma_bytes >= size)
-			return 0; /* Already large enough */
-		vfree(runtime->dma_area);
-	}
-	runtime->dma_area = vzalloc(size);
-	if (!runtime->dma_area)
-		return -ENOMEM;
-	runtime->dma_bytes = size;
-	return 1;
+	return snd_pcm_lib_malloc_pages(sub, params_buffer_bytes(params));
 }
 
 static int gip_headset_pcm_hw_free(struct snd_pcm_substream *sub)
 {
-	struct snd_pcm_runtime *runtime = sub->runtime;
-
-	vfree(runtime->dma_area);
-	runtime->dma_area = NULL;
-	return 0;
+	return snd_pcm_lib_free_pages(sub);
 }
 
 static struct page *gip_headset_pcm_get_page(struct snd_pcm_substream *sub,
@@ -192,7 +176,7 @@ static const struct snd_pcm_ops gip_headset_pcm_ops = {
 	.prepare = gip_headset_pcm_prepare,
 	.trigger = gip_headset_pcm_trigger,
 	.pointer = gip_headset_pcm_pointer,
-	.page = gip_headset_pcm_get_page,
+	// .page = gip_headset_pcm_get_page,
 };
 
 static bool gip_headset_advance_pointer(struct gip_headset_stream *stream,
