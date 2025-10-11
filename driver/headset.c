@@ -176,7 +176,7 @@ static const struct snd_pcm_ops gip_headset_pcm_ops = {
 	.prepare = gip_headset_pcm_prepare,
 	.trigger = gip_headset_pcm_trigger,
 	.pointer = gip_headset_pcm_pointer,
-	// .page = gip_headset_pcm_get_page,
+	.page = gip_headset_pcm_get_page,
 };
 
 static bool gip_headset_advance_pointer(struct gip_headset_stream *stream,
