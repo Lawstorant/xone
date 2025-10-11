@@ -112,12 +112,6 @@ static int gip_headset_pcm_hw_free(struct snd_pcm_substream *sub)
 	return snd_pcm_lib_free_pages(sub);
 }
 
-static struct page *gip_headset_pcm_get_page(struct snd_pcm_substream *sub,
-					     unsigned long offset)
-{
-	return vmalloc_to_page(sub->runtime->dma_area + offset);
-}
-
 static int gip_headset_pcm_prepare(struct snd_pcm_substream *sub)
 {
 	return 0;
@@ -176,7 +170,6 @@ static const struct snd_pcm_ops gip_headset_pcm_ops = {
 	.prepare = gip_headset_pcm_prepare,
 	.trigger = gip_headset_pcm_trigger,
 	.pointer = gip_headset_pcm_pointer,
-	// .page = gip_headset_pcm_get_page,
 };
 
 static bool gip_headset_advance_pointer(struct gip_headset_stream *stream,
