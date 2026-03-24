@@ -1264,6 +1264,8 @@ static void xone_dongle_destroy(struct xone_dongle *dongle)
 		dongle->fw_state = XONE_DONGLE_FW_STATE_STOP_LOADING;
 	}
 
+	xone_dongle_toggle_pairing(dongle, false);
+
 	usb_kill_anchored_urbs(&dongle->urbs_in_busy);
 	/* cancel fw load before destroying workqueues to avoid use-after-free */
 	cancel_work_sync(&dongle->load_fw_work);
