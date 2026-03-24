@@ -523,11 +523,16 @@ static int xone_dongle_add_client(struct xone_dongle *dongle, u8 *addr)
 	int i, err;
 	unsigned long flags;
 
+	dev_dbg(dongle->mt.dev, "%s: new mac=%pM\n", __func__, addr);
+
 	/* reject duplicate: controller already has a WCID slot */
 	for (i = 0; i < XONE_DONGLE_MAX_CLIENTS; i++)
 		if (dongle->clients[i] &&
-		    ether_addr_equal(dongle->clients[i]->address, addr))
+		    ether_addr_equal(dongle->clients[i]->address, addr)) {
+			dev_dbg(dongle->mt.dev,
+				"%s: Client with this address already exists!\n");
 			return 0;
+		}
 
 	client = xone_dongle_create_client(dongle, addr);
 	if (IS_ERR(client))
